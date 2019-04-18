@@ -40,10 +40,10 @@ void moveMenu(int key, int x, int y){
                 tyOption+=30;
             break;
         case GLUT_KEY_DOWN:
-            if(tyOption == 100)
-                tyOption-=30;
             if(tyOption == 70)
                 tyOption+=30;
+            else
+                tyOption-=30;
             break;
         default:
             break;

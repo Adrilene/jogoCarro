@@ -8,10 +8,10 @@ using namespace std;
 
 int tX = 0;
 int tY = 0;
-int y1 = 100;
-int y2 = 250;
-int y3 = 400;
-int y4 = 450;
+int count = 0;
+bool bateu = false;
+int counter = 0;
+int xOBS = 285;
 
 /*Função para gerenciar as setas*/
 void specialKey(int key, int x, int y){
@@ -40,8 +40,21 @@ void desenhaListra(int x, int y){
     glEnd();
 
 }
+
+void desenhaObstaculo(int x, int y){
+    
+    glColor3f(0.63, 0.32, 0.18);
+    glBegin(GL_QUADS);
+        glVertex2d(x-20,y-20);
+        glVertex2d(x,y-20);
+        glVertex2d(x,y);
+        glVertex2d(x-20,y);
+    glEnd();
+}
+
 void Timer(int value){
-    cout << "tY: " << tY;
+    count ++; 
+    
     if(tY == 500) tY = 100;
     tY++; 
     // Redesenha o quadrado com as novas coordenadas 
@@ -49,18 +62,6 @@ void Timer(int value){
     glutTimerFunc(33,Timer, 1);
 }
 
-void desenhaObstaculo(){
-    int pos = rand()%2;
-    int x;
-    if (pos == 0) x = 215;
-    glColor3f(0.63, 0.32, 0.18);
-    glBegin(GL_QUADS);
-        glVertex2d(x-20,550);
-        glVertex2d(x,550);
-        glVertex2d(x,570);
-        glVertex2d(x-20,570);
-    glEnd();
-}
 
 void desenhaCarro(){
     glColor3f(0.0,0.0,1.0);
@@ -129,6 +130,8 @@ void desenhaCarro(){
 
 
 void desenhaPista(){
+  counter += 1;
+  
    	glColor3f(0.51,0.54,0.54);
     glBegin(GL_QUADS);
         glVertex2i(0,0);
@@ -145,6 +148,28 @@ void desenhaPista(){
     desenhaListra(245,850-tY);
     desenhaListra(245,1000-tY);
 
+    cout << "counter: " << counter << "\n";
+    if(counter == 0) {
+        int pos = rand()%2;
+        if(pos == 1) {
+            xOBS = 215;
+        } else {
+            xOBS = 285;
+        } 
+    }
+    if(counter > 0 && counter < 1000) {
+        desenhaObstaculo(xOBS, 550-tY);
+    } else if(counter == 1000) {
+        counter = 0;
+
+    }
+    
+    /*if(count == 20){
+        pos = rand()%2;
+        if (pos == 1) x = 215;
+        desenhaObstaculo(x, 550-tY);
+        count = 0;
+    }*/
 }
 
 /* Função callback chamada para fazer o desenho */

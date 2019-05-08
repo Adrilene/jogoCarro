@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <vector>
 
-
 using namespace std;
 
 #define LARGURA  500		/* Width */
@@ -55,7 +54,7 @@ void selectOption(unsigned char key, int x, int y){
     
     if(key == 13){
         if (tyOption == 100){
-            //do nothing yet
+            startGame();
         }
         else if(tyOption == 70)
             showRanking();

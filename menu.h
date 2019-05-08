@@ -1,47 +1,28 @@
 #include <GL/glut.h>
 #include <iostream>
+//#include "acoes.h"
 
 using namespace std;
 
-int txOption = 170;
-int tyOption = 100;
-
 void DesenhaTexto(void *font, char *texto){
+    
+    retornaTela(0);
     // Exibe caractere a caractere
+
     while (*texto)
         glutStrokeCharacter(GLUT_STROKE_ROMAN, *texto++);
-}
-
-void moveMenu(int key, int x, int y){
-    
-    switch (key){
-        case GLUT_KEY_UP:
-            if (tyOption == 100)
-                tyOption -= 30;
-            else
-                tyOption += 30;
-            break;
-        case GLUT_KEY_DOWN:
-            if (tyOption == 70)
-                tyOption += 30;
-            else
-                tyOption -= 30;
-            break;
-        default:
-            break;
-    }
-    glutPostRedisplay();
 }
 
 void selectOption(unsigned char key, int x, int y){
 
     if (key == 13)
     {
-        if (tyOption == 100)
+        if (y == 100)
         {
-            //do nothing yet
+            retornaTela(1);
+            //startGame();
         }
-        else if (tyOption == 70)
+        else if (y == 70)
         {
             //showRanking();
             cout << "oi";
@@ -73,7 +54,7 @@ void DesenhaMenu(){
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(txOption, tyOption, 0);
+    glTranslated(0, posMenu(), 0);
     glScalef(0.2, 0.2, 1);
     DesenhaTexto(GLUT_STROKE_ROMAN, "[     ]");
     glPopMatrix();

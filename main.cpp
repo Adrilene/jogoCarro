@@ -1,8 +1,12 @@
 #include "menu.h"
+//#include "jogo.h"
+#include "acoes.h"
 #include <GL/glut.h>
 
 #define LARGURA  500		/* Width */
 #define ALTURA   500		/* Heigth */
+
+
 
 /* Função callback chamada para fazer o desenho */
 void Desenha(void){
@@ -56,7 +60,8 @@ int main(int argc, char **argv){
 	glutCreateWindow("Transformacoes");
     glutDisplayFunc(Desenha);
     glutReshapeFunc(AlteraTamanhoJanela);
-    glutSpecialFunc(moveMenu);
+    glutSpecialFunc(gerenciaTeclado);
+    glutMouseFunc(gerenciaMouse);
     glutKeyboardFunc(selectOption);
     Inicializa();
 	glutMainLoop();

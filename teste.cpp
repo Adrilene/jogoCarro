@@ -45,8 +45,8 @@ void desenhaObstaculo(int x, int y){
     
     glColor3f(0.63, 0.32, 0.18);
     glBegin(GL_QUADS);
-        glVertex2d(x-20,y-20);
-        glVertex2d(x,y-20);
+        glVertex2d(x-20,y-20); //
+        glVertex2d(x,y-20); //
         glVertex2d(x,y);
         glVertex2d(x-20,y);
     glEnd();
@@ -59,7 +59,7 @@ void Timer(int value){
     tY++; 
     // Redesenha o quadrado com as novas coordenadas 
     glutPostRedisplay();
-    glutTimerFunc(33,Timer, 1);
+    glutTimerFunc(20,Timer, 1);
 }
 
 
@@ -73,8 +73,8 @@ void desenhaCarro(){
 
         glVertex2d(60,80);
         glVertex2d(140,80);
-        glVertex2d(140,100);
-        glVertex2d(60,100);
+        glVertex2d(140,100); //
+        glVertex2d(60,100); //
     glEnd();
 
     glColor3f(0.41,0.41,0.41);
@@ -159,9 +159,12 @@ void desenhaPista(){
     }
     if(counter > 0 && counter < 1000) {
         desenhaObstaculo(xOBS, 550-tY);
-    } else if(counter == 1000) {
+    } else if(550-tY == 0) {
         counter = 0;
 
+    }
+    if(60+tX+80 >= xOBS-20 && tX+60 <= xOBS) {
+        cout << "hueuhe";
     }
     
     /*if(count == 20){
